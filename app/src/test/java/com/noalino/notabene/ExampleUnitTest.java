@@ -1,4 +1,4 @@
-package com.noalino.mypersonalnotes;
+package com.noalino.notabene;
 
 import org.junit.Test;
 
