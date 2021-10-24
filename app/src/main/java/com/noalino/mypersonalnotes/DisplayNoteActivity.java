@@ -17,7 +17,7 @@ public class DisplayNoteActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         // Capture the layout's TextView and set the string as its text
-        EditText textView = findViewById(R.id.editTextTextMultiLine);
+        EditText textView = findViewById(R.id.noteContent);
         textView.setText("TODO: Edit note");
     }
 }
