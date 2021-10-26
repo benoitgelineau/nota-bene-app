@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NotaBene">
-        <activity android:name=".DisplayNoteActivity"
+        <activity
+            android:name=".DisplayNoteActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NotaBene.NoActionBar"
             android:parentActivityName=".MainActivity">
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data

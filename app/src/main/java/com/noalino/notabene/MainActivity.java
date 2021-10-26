@@ -9,7 +9,7 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String NOTE_CONTENT = "com.noalino.mypersonalnotes.NOTE_CONTENT";
+    public static final String NOTE_CONTENT = "com.noalino.notabene.NOTE_CONTENT";
     private String tempNoteContent = "TODO: Edit note";
 
     @Override
@@ -17,31 +17,17 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MainActivity", "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        registerButtons();
     }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d("MainActivity", "onStart");
+
+    private void registerButtons() {
+        registerButton(R.id.floatingActionButton, () -> {
+            openNote();
+        });
     }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("MainActivity","onResume");
-    }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d("MainActivity","onPause");
-    }
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("MainActivity","onStop");
-    }
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d("MainActivity","onRestart");
+
+    private void registerButton(int buttonResourceId, Runnable r) {
+        findViewById(buttonResourceId).setOnClickListener(v -> r.run());
     }
     @Override
     protected void onDestroy() {
@@ -50,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /** Called when the user taps the Add button */
-    public void openNote(View view) {
+    private void openNote() {
         Intent intent = new Intent(this, DisplayNoteActivity.class);
-        intent.putExtra(NOTE_CONTENT, tempNoteContent);
+        intent.putExtra(NOTE_CONTENT, "");
         startActivity(intent);
     }
 }
