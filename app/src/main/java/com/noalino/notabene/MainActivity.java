@@ -5,12 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String NOTE_CONTENT = "com.noalino.notabene.NOTE_CONTENT";
-    private String tempNoteContent = "TODO: Edit note";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void registerButton(int buttonResourceId, Runnable r) {
         findViewById(buttonResourceId).setOnClickListener(v -> r.run());
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("MainActivity","onDestroy");
     }
 
     /** Called when the user taps the Add button */
