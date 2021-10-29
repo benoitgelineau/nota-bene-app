@@ -40,11 +40,11 @@ public class DisplayNoteActivity extends AppCompatActivity {
         }
 
         FloatingActionButton saveButton = findViewById(R.id.saveButton);
-        saveButton.setOnClickListener(v -> Save("note.txt"));
+        saveButton.setOnClickListener(v -> Save("Note1.txt"));
 
         // Capture the layout's TextView and set the string as its text
         noteContent = findViewById(R.id.noteContent);
-        noteContent.setText(Open("note.txt"));
+        noteContent.setText(Open("Note1.txt"));
     }
 
     public void Save(String fileName) {
