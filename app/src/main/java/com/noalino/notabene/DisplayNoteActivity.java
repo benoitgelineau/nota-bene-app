@@ -1,5 +1,6 @@
 package com.noalino.notabene;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
@@ -39,15 +40,18 @@ public class DisplayNoteActivity extends AppCompatActivity {
             throw new NullPointerException("Something went wrong");
         }
 
+        Intent intent = getIntent();
+        String noteId = intent.getStringExtra(MainActivity.NOTE_ID);
+
         FloatingActionButton saveButton = findViewById(R.id.saveButton);
-        saveButton.setOnClickListener(v -> Save("Note1.txt"));
+        saveButton.setOnClickListener(v -> save(noteId + ".txt"));
 
         // Capture the layout's TextView and set the string as its text
         noteContent = findViewById(R.id.noteContent);
-        noteContent.setText(Open("Note1.txt"));
+        noteContent.setText(getFileContent(noteId + ".txt"));
     }
 
-    public void Save(String fileName) {
+    private void save(String fileName) {
 //      TODO Use Buffer
         try (OutputStreamWriter out =
                      new OutputStreamWriter(openFileOutput(fileName, 0))) {
@@ -59,30 +63,36 @@ public class DisplayNoteActivity extends AppCompatActivity {
         }
     }
 
-    public boolean FileExists(String fileName){
+    private boolean fileExists(String fileName){
         File file = getBaseContext().getFileStreamPath(fileName);
         return file.exists();
     }
 
-    public String Open(String fileName) {
+    private String getFileContent(String fileName) {
         String content = "";
-        if (FileExists(fileName)) {
-            try {
-                InputStream in = openFileInput(fileName);
-                if ( in != null) {
-                    InputStreamReader tmp = new InputStreamReader( in );
-                    BufferedReader reader = new BufferedReader(tmp);
-                    String str;
-                    StringBuilder buf = new StringBuilder();
-                    while ((str = reader.readLine()) != null) {
-                        buf.append(str + "\n");
-                    } in .close();
-                    content = buf.toString();
-                }
-            } catch (java.io.FileNotFoundException e) {} catch (Throwable t) {
-                Toast.makeText(this, "Exception: " + t.toString(), Toast.LENGTH_LONG).show();
-            }
+        if (fileExists(fileName)) {
+            content = openFile(fileName);
         }
         return content;
+    }
+
+    private String openFile(String fileName) {
+        String fileContent = "";
+        try {
+            InputStream in = openFileInput(fileName);
+            if ( in != null) {
+                InputStreamReader tmp = new InputStreamReader( in );
+                BufferedReader reader = new BufferedReader(tmp);
+                String str;
+                StringBuilder buf = new StringBuilder();
+                while ((str = reader.readLine()) != null) {
+                    buf.append(str).append("\n");
+                } in .close();
+                fileContent = buf.toString();
+            }
+        } catch (java.io.FileNotFoundException e) {} catch (Throwable t) {
+            Toast.makeText(this, "Exception: " + t.toString(), Toast.LENGTH_LONG).show();
+        }
+        return fileContent;
     }
 }
