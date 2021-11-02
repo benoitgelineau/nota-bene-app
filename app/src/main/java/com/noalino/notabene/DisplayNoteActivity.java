@@ -134,7 +134,7 @@ public class DisplayNoteActivity extends AppCompatActivity {
             }
             writeToFile(newNotes.toString());
             Toast.makeText(this, "Note Saved!", Toast.LENGTH_SHORT).show();
-            finish();
+//            finish();
         } catch (JSONException e) {
             Toast.makeText(this, "Exception: " + e.toString(), Toast.LENGTH_LONG).show();
         }
