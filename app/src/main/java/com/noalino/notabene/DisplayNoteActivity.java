@@ -25,6 +25,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -117,11 +118,16 @@ public class DisplayNoteActivity extends AppCompatActivity {
     private void save(String noteId) {
         try {
             JSONArray newNotes = new JSONArray(readNotesFile());
+            String dateNow = Calendar.getInstance().getTime().toString();
             if (noteId == null) {
                 // add new note
                 JSONObject newNote = new JSONObject();
                 newNote.put("id", getUuid());
                 newNote.put("content", noteContent.getText().toString());
+                newNote.put("createdAt", dateNow);
+                newNote.put("updatedAt", "");
+                newNote.put("remindedAt", "");
+                newNote.put("isPinned", false);
                 newNotes.put(newNote);
             } else {
                 // retrieve & update existing note
@@ -129,6 +135,7 @@ public class DisplayNoteActivity extends AppCompatActivity {
                     JSONObject newNote = newNotes.getJSONObject(i);
                     if (newNote.get("id") == noteId) {
                         newNote.put("content", noteContent.getText().toString());
+                        newNote.put("updatedAt", dateNow);
                     }
                 }
             }
