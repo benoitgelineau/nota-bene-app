@@ -3,6 +3,8 @@ package com.noalino.notabene;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -64,6 +66,33 @@ public class DisplayNoteActivity extends AppCompatActivity {
         // Capture the layout's TextView and set the note content as its text
         if (!isNewNote) {
             noteContent.setText(getNoteContent(noteId));
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_display_note, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_pin:
+                // User chose the "Settings" item, show the app settings UI...
+                System.out.println("33333 pin");
+                return true;
+
+            case R.id.action_reminder:
+                // User chose the "Favorite" action, mark the current item
+                // as a favorite...
+                System.out.println("33333 reminder");
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
         }
     }
 
