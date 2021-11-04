@@ -162,7 +162,7 @@ public class DisplayNoteActivity extends AppCompatActivity {
                 // retrieve & update existing note
                 for (int i = 0; i < newNotes.length(); i++) {
                     JSONObject newNote = newNotes.getJSONObject(i);
-                    if (newNote.get("id") == noteId) {
+                    if (newNote.get("id").equals(noteId)) {
                         newNote.put("content", noteContent.getText().toString());
                         newNote.put("updatedAt", dateNow);
                     }

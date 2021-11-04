@@ -1,5 +1,6 @@
 package com.noalino.notabene;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         NoteBuilder note = localNotesList.get(position);
         viewHolder.getTextView().setText(note.getContent());
+        viewHolder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), DisplayNoteActivity.class);
+            intent.putExtra(MainActivity.NOTE_ID, note.getId());
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override
