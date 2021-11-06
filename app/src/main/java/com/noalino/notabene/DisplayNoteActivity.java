@@ -74,27 +74,27 @@ public class DisplayNoteActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_pin:
-                // User chose the "Settings" item, show the app settings UI...
-                System.out.println("33333 pin");
-                return true;
-
-            case R.id.action_reminder:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
-                System.out.println("33333 reminder");
-                return true;
-
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-
-        }
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.action_pin:
+//                // User chose the "Settings" item, show the app settings UI...
+//                System.out.println("33333 pin");
+//                return true;
+//
+//            case R.id.action_reminder:
+//                // User chose the "Favorite" action, mark the current item
+//                // as a favorite...
+//                System.out.println("33333 reminder");
+//                return true;
+//
+//            default:
+//                // If we got here, the user's action was not recognized.
+//                // Invoke the superclass to handle it.
+//                return super.onOptionsItemSelected(item);
+//
+//        }
+//    }
 
     private String getUuid() {
         UUID uuid = UUID.randomUUID();
